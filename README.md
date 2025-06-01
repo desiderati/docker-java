@@ -16,20 +16,20 @@ An open-source project that provides a Docker image designed for running Java-ba
 
 3. After the build completes, tag your image, so you can push the image to your repository:
 
-   `docker tag java:21 api.repoflow.io/herd.io/docker/java:21`
-   `docker tag java:21 api.repoflow.io/herd.io/docker/java:latest`
+   `docker tag java:21 api.repoflow.io/desiderati/docker/java:21`
+   `docker tag java:21 api.repoflow.io/desiderati/docker/java:latest`
 
 4. Run the following command to push this image to your repository:
 
-   `docker push api.repoflow.io/herd.io/docker/java:21`
-   `docker push api.repoflow.io/herd.io/docker/java:latest`
+   `docker push api.repoflow.io/desiderati/docker/java:21`
+   `docker push api.repoflow.io/desiderati/docker/java:latest`
 
 ### Example
 
    ```
    docker build --progress=plain -t java:21 .
-   docker tag java:21 api.repoflow.io/herd.io/docker/java:21
-   docker tag java:21 api.repoflow.io/herd.io/docker/java:latest
-   docker push api.repoflow.io/herd.io/docker/java:21
-   docker push api.repoflow.io/herd.io/docker/java:latest
+   docker tag java:21 api.repoflow.io/desiderati/docker/java:21
+   docker tag java:21 api.repoflow.io/desiderati/docker/java:latest
+   docker push api.repoflow.io/desiderati/docker/java:21
+   docker push api.repoflow.io/desiderati/docker/java:latest
    ```
