@@ -2,7 +2,7 @@ version: '3'
 services:
   java:
     container_name: java
-    image: 'api.repoflow.io/desiderati/docker/java:21'
+    image: 'api.repoflow.io/desiderati/docker/library/java:21'
     ports:
       # Descomentar a linha abaixo para adicionar suporte à depuração remota.
       - '8090:8090'

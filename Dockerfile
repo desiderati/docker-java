@@ -63,11 +63,11 @@ RUN apt-get update -y \
  && dpkg -i /opt/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb
 
 # Configures the Docker image with Prometheus metrics.
-COPY jmx_prometheus_javaagent-0.16.1.jar /opt/java-app/
+COPY jmx_prometheus_javaagent-1.3.0.jar /opt/java-app/
 COPY prometheus.yml /opt/java-app/
 
 # Datadog Trace Agent.
-COPY dd-java-agent.jar /opt/java-app/
+COPY dd-java-agent-1.49.0.jar /opt/java-app/
 LABEL "com.datadoghq.ad.logs"='[{"source": "java", "service": "java", "log_processing_rules": [{"type": "mask_sequences", "name": "remove_ansi_color_codes", "pattern" : "\\x1b\\[[0-9;]*m", "replace_placeholder" : ""}, {"type": "multi_line", "name": "log_start_with_hour", "pattern" : "(\\x1b\\[[0-9;]*m\\s*)*([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])[.,][0-9]{3}"}]}]'
 
 # Default variables to be used by docker-compose.yml.
@@ -95,4 +95,4 @@ ENV HOME /home/java/
 
 WORKDIR /opt/java-app/
 
-CMD java -javaagent:/opt/java-app/jmx_prometheus_javaagent-0.16.1.jar=9404:/opt/java-app/prometheus.yml $JAVA_OPTS -jar app.jar
+CMD java -javaagent:/opt/java-app/jmx_prometheus_javaagent-1.3.0.jar=9404:/opt/java-app/prometheus.yml $JAVA_OPTS -jar app.jar
