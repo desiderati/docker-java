@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright (c) 2025 - Felipe Desiderati
 #
@@ -17,10 +18,16 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-docker build --progress=plain -t java:21 .
-docker tag java:21 api.repoflow.io/desiderati/docker/java:21
-docker tag java:21 api.repoflow.io/desiderati/docker/java:latest
-docker tag java:21 api.repoflow.io/desiderati/docker/java:21
-docker tag java:21 api.repoflow.io/desiderati/docker/java:latest
-docker push api.repoflow.io/desiderati/docker/java:21
-docker push api.repoflow.io/desiderati/docker/java:latest
+DIR="$(dirname "${BASH_SOURCE[0]}")"
+DIR="$(cd "$DIR" >/dev/null 2>&1 && pwd)"
+"$DIR"/postinstall.sh
+
+echo "[$(date +%c)] Cleaning files not accessed for more than 15 days in directory: $DIR/logs/..."
+sudo find "$DIR"/logs/ -depth -atime +15 -print -delete
+sudo find "$DIR"/logs/ -depth -type d -empty -print -delete
+
+echo "[$(date +%c)] Cleaning files not accessed for more than 15 days in directory: $DIR/temp/..."
+sudo find "$DIR"/temp/ -depth -atime +15 -print -delete
+sudo find "$DIR"/temp/ -depth -type d -empty -print -delete
+
+"$DIR"/init.sh

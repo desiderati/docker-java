@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright (c) 2025 - Felipe Desiderati
 #
@@ -17,10 +18,11 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-docker build --progress=plain -t java:21 .
-docker tag java:21 api.repoflow.io/desiderati/docker/java:21
-docker tag java:21 api.repoflow.io/desiderati/docker/java:latest
-docker tag java:21 api.repoflow.io/desiderati/docker/java:21
-docker tag java:21 api.repoflow.io/desiderati/docker/java:latest
-docker push api.repoflow.io/desiderati/docker/java:21
-docker push api.repoflow.io/desiderati/docker/java:latest
+DIR="$(dirname "${BASH_SOURCE[0]}")"
+DIR="$(cd "$DIR" >/dev/null 2>&1 && pwd)"
+
+echo "[$(date +%c)] Creating the application's default directories..."
+sudo mkdir -p "$DIR"/logs/
+sudo mkdir -p "$DIR"/temp/
+
+"$DIR"/postinstall.sh

@@ -96,7 +96,7 @@ services:
       - '9090:9090'
       
       # Port for remote debugging
-      #- '8090:8090'
+      #- '9091:8090'
       
       # Port for JMX monitoring (uncomment if needed)
       #- '9010:9010'
@@ -133,7 +133,7 @@ services:
 
     volumes:
       # Mount temporary files
-      - ./tmp/:/tmp/
+      - ./temp/:/tmp/
       
       # Mount configuration files
       - ./config/:/opt/java-app/config/
