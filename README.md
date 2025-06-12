@@ -1,4 +1,4 @@
-# Custom Docker Image for Java-based Applications
+# Custom Docker Image for Java-based Applications [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 An open-source project that provides a Docker image designed for running Java-based applications.
 
@@ -183,7 +183,3 @@ When `ENABLE_DEBUG=true`, you can connect a remote debugger to port 8090.
 ## Author
 
 Felipe Desiderati <felipedesiderati@springbloom.dev> (https://github.com/desiderati)
-
-## [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
