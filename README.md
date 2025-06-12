@@ -1,37 +1,43 @@
-# docker-java
+# Custom Docker Image for Java-based Applications
 
 An open-source project that provides a Docker image designed for running Java-based applications.
 
 ## What This Image Does
 
-This customized Java Docker image is built on top of `openjdk:21-jdk-slim-bullseye` and includes several enhancements 
+This customized Java Docker image is built on top of `openjdk:21-jdk-slim-bullseye` and includes several enhancements
 for production-ready Java applications:
 
 ### Core Features
+
 - **Java 21**: Latest LTS version of Java for optimal performance and features
 - **Locale Configuration**: Preconfigured with en_US.UTF-8 locale
 - **Timezone Support**: Default timezone set to America/Sao_Paulo, configurable via environment variables
 - **User Management**: Creates a non-root 'java' user for better security
 
 ### Development & Debugging Tools
+
 - **Remote Debugging**: Optional JVM debugging on port 8090 (enabled via ENABLE_DEBUG)
 - **Utility Tools**: Includes curl, wget, vim, and net-tools for troubleshooting
 - **Wait-for-it Script**: Utility for service dependency management
 
 ### Monitoring & Observability
+
 - **Prometheus Integration**: Built-in JMX exporter on port 9404 for metrics collection
 - **Datadog APM**: Optional Datadog Java agent for application performance monitoring
 - **JMX Support**: Optional JMX monitoring on port 9010 (enabled via ENABLE_JMX)
 
 ### Document Generation
+
 - **HTML to PDF Conversion**: Includes wkhtmltopdf for generating PDF documents from HTML templates
 
 ### Performance Tuning
+
 - **Memory Management**: Configurable heap settings via JAVA_XMS and JAVA_XMX
 - **CPU Optimization**: Parallel GC and ForkJoinPool thread configuration via JAVA_CPUS
 - **Metaspace Configuration**: Optimized metaspace settings for Java applications
 
 ### Environment Variables
+
 - `PROFILE`: Sets Spring profiles for application configuration
 - `LOCAL_USER_ID`: Configures the user ID for the 'java' user (default: 1000)
 - `ENABLE_DEBUG`: Enables remote debugging (true/false)
@@ -44,7 +50,7 @@ for production-ready Java applications:
 
 ## Prerequisites
 
-Ensure Docker is installed on your machine. 
+Ensure Docker is installed on your machine.
 If not, download and install it from the [Docker official website](https://www.docker.com/get-started/)
 
 ## How to build
@@ -81,7 +87,7 @@ If not, download and install it from the [Docker official website](https://www.d
 
 ## How to Use
 
-You can use this image in your projects by referencing it in a `docker-compose.yml` file 
+You can use this image in your projects by referencing it in a `docker-compose.yml` file
 or directly with Docker commands.
 
 ### Docker Compose Example
@@ -94,16 +100,16 @@ services:
     image: 'api.repoflow.io/desiderati/docker/library/java:21'
     ports:
       - '9090:9090'
-      
+
       # Port for remote debugging
       #- '9091:8090'
-      
+
       # Port for JMX monitoring (uncomment if needed)
       #- '9010:9010'
-      
+
       # Port for Prometheus metrics
       #- '9404:9404'
-      
+
     environment:
       # Set the user ID to match your local user (run 'id -u ${USER}' to get your ID)
       - LOCAL_USER_ID=1000
@@ -134,13 +140,13 @@ services:
     volumes:
       # Mount temporary files
       - ./temp/:/tmp/
-      
+
       # Mount configuration files
       - ./config/:/opt/java-app/config/
-      
+
       # Mount logs directory
       - ./logs/:/opt/java-app/logs/
-      
+
       # Mount your application JAR
       - ./path-to-your-application.jar:/opt/java-app/app.jar
 ```
@@ -161,7 +167,7 @@ docker run -d \
 
 ### Using with Spring Boot Applications
 
-This image is particularly well-suited for Spring Boot applications. 
+This image is particularly well-suited for Spring Boot applications.
 Build your application as an executable JAR and mount it to `/opt/java-app/app.jar` in the container.
 
 ### Monitoring Your Application
@@ -174,6 +180,10 @@ Build your application as an executable JAR and mount it to `/opt/java-app/app.j
 
 When `ENABLE_DEBUG=true`, you can connect a remote debugger to port 8090.
 
-## License
+## Author
 
-This project is licensed under the MIT License.
+Felipe Desiderati <felipedesiderati@springbloom.dev> (https://github.com/desiderati)
+
+## [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
